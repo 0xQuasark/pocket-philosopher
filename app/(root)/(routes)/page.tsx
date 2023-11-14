@@ -10,7 +10,6 @@ interface RootPageProps {
   }
 }
 
-
 const RootPage = async ({
   searchParams  
 }: RootPageProps) => {

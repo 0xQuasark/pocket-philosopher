@@ -1,4 +1,4 @@
-import { currentUser } from "@clerk/nextjs";
+import { auth, currentUser } from "@clerk/nextjs";
 import { NextResponse } from "next/server"
 
 import prismadb from "@/lib/prismadb";
@@ -46,6 +46,33 @@ export async function PATCH(
 
   } catch(err) {
     console.log("[COMPANION_PATCH]", err)
+    return new NextResponse("Internal Error", { status: 500 })
+  }
+}
+
+export async function DELETE(
+  request: Request,
+  { params }: { params: { companionId: string }}
+) {
+  try {
+    const { userId } = auth();    // using a different way to collect user info, because we need less info, including for my reference
+    if (!userId) {
+      return new NextResponse("Unauthorized", { status: 401 })
+    }
+
+    const companion = await prismadb.companion.delete({
+      // where the id in the URL AND the userId matches with the logged in user
+      // makes sure only the creator can delete
+      where: {
+        userId,
+        id: params.companionId
+      }
+    });
+
+    return NextResponse.json(companion);
+    
+  } catch(err) {
+    console.log('[COMPANION_DELETE]', err)
     return new NextResponse("Internal Error", { status: 500 })
   }
 }
