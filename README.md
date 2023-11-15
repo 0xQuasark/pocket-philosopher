@@ -23,12 +23,13 @@
   - limit the categories they can set (companion-form.tsx Select)
 
 ## Explanations
-- (Companion Creation Form explanation)[https://youtu.be/PjYWpd7xkaM?si=hhEquGfIPFhf7BoN&t=8513]
+- [Companion Creation Form explanation](https://youtu.be/PjYWpd7xkaM?si=hhEquGfIPFhf7BoN&t=8513)
+- [Conditional rendering of role based message (chat-message.tsx, etc)](https://youtu.be/PjYWpd7xkaM?si=LC5ABfvTDBafNaHd&t=14949)
 
 
 ## Follow ups
-- (Dark/light mode force)[https://youtu.be/PjYWpd7xkaM?si=_sexRnuKEeW0uq93&t=3078]
-- what are hydration issues (here)[https://youtu.be/PjYWpd7xkaM?si=0Bt8LpIcSKbrTvra&t=7322]
+- [Dark/light mode force](https://youtu.be/PjYWpd7xkaM?si=_sexRnuKEeW0uq93&t=3078)
+- what are hydration issues [here](https://youtu.be/PjYWpd7xkaM?si=0Bt8LpIcSKbrTvra&t=7322)
 
 
 
