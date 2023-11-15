@@ -56,3 +56,12 @@
 - `npx prisma db push`
 - this regenerates the schema and then pushes it to PlanetScale
 - it's always best to restart the server once this has happened
+- to run the prisma viewer: `npx prisma studio`
+
+
+## Notes
+- Deprecated code was found using this tutorial
+  - to get around it I installed an older version of pinecone and its dependence langchain:
+  - `npm install @pinecone-database/pinecone@0.1.6`
+  - `npm install langchain@0.0.92`
+  - instead of pinecone 1.2 and langchain 0.186
