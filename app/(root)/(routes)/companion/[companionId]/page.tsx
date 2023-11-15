@@ -1,4 +1,6 @@
+import { auth, redirectToSignIn } from "@clerk/nextjs";
 import prismadb from "@/lib/prismadb";
+
 import { CompanionForm } from "./components/companion-form";
 
 
@@ -12,12 +14,18 @@ interface CompanionIdPageProps {
 const CompanionIdPage = async ({
   params
 }: CompanionIdPageProps) => {
+  const { userId } = auth();
+
+  if (!userId) {
+    return redirectToSignIn();
+  }
   // TODO: check subscription
 
   // This pulls the id from the params in the url, and looks for it in the database
   const companion = await prismadb.companion.findUnique({
     where: {
-      id: params.companionId
+      id: params.companionId,
+      userId
     }
   });
 
