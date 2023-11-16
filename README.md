@@ -65,3 +65,9 @@
   - `npm install @pinecone-database/pinecone@0.1.6`
   - `npm install langchain@0.0.92`
   - instead of pinecone 1.2 and langchain 0.186
+
+
+## Stripe
+
+- when working to test stripe payments, make sure that this is running:
+  - `stripe listen --forward-to localhost:4242/webhook`
