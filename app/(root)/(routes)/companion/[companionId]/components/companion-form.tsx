@@ -5,7 +5,7 @@ import { Category, Companion } from "@prisma/client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Wand2 } from "lucide-react";
-import axios from 'axios'
+import axios from "axios"
 
 import { 
   Form, 
@@ -261,7 +261,7 @@ export const CompanionForm = ({
                     />
                   </FormControl>
                   <FormDescription>
-                    Describe in detail your companion's backstory and relevant details.
+                    Describe in detail your companion&apos;s backstory and relevant details.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -283,7 +283,7 @@ export const CompanionForm = ({
                     />
                   </FormControl>
                   <FormDescription>
-                    Describe in detail your companion's backstory and relevant details.
+                    Describe in detail your companion&apos;s backstory and relevant details.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

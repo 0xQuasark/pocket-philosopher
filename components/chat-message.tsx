@@ -1,14 +1,37 @@
 "use client"
+require('dotenv').config();
 
 import { useTheme } from "next-themes";
 import { BeatLoader } from "react-spinners"
-import { Copy } from "lucide-react";
+import { Copy, Play } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { useToast } from "@/components/ui/use-toast"
 import { BotAvatar } from "@/components/bot-avatar";
 import { UserAvatar } from "@/components/user-avatar";
 import { Button } from "@/components/ui/button";
+
+import OpenAI from "openai";
+let apiKey = "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";
+console.log('api key', apiKey)
+// const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const openai = new OpenAI({ apiKey, dangerouslyAllowBrowser: true });
+
+
+async function textToSpeech(content: string) {
+  const mp3 = await openai.audio.speech.create({
+    model: "tts-1",
+    voice: "alloy",
+    input: content,
+  });
+
+  const buffer = Buffer.from(await mp3.arrayBuffer());
+  const blob = new Blob([buffer], { type: 'audio/mpeg' });
+  const url = URL.createObjectURL(blob);
+
+  return url;
+}
+
 
 export interface ChatMessageProps {
   role: "system" | "user",
@@ -38,6 +61,21 @@ export const ChatMessage = ({
     });
   }
 
+  const onPlay = async () => {
+    if (!content) {
+      // it's ok if the message has no content
+      return;
+    }
+
+    const audioUrl = await textToSpeech(content);
+    const audio = new Audio(audioUrl);
+    audio.play();
+  
+    toast({
+      description: "Message queued to play audio",
+    });
+  }
+
 
   return (
     <div className={cn(
@@ -56,14 +94,26 @@ export const ChatMessage = ({
       </div>
       {role === "user" && <UserAvatar />}
       {role !== "user" && !isLoading && (
-        <Button
-          onClick={onCopy}
+        <>
+          <Button
+            onClick={onCopy}
+            className="opacity-0 group-hover:opacity-100 transition" // opacity-0 hides it, until the hover
+            size="icon"
+            variant="ghost"
+          >
+            <Copy className="w-4 h-4" />
+          </Button>
+          <Button
+          onClick={onPlay} // replace for MVP
           className="opacity-0 group-hover:opacity-100 transition" // opacity-0 hides it, until the hover
           size="icon"
           variant="ghost"
         >
-          <Copy className="w-4 h-4" />
+          {/* replace following line with Play */}
+          <Play className="w-4 h-4" /> 
         </Button>
+      </>
+      
       )}
     </div>
   )
