@@ -26,7 +26,6 @@ export const ProModal = () => {
     setIsMounted(true);
   }, []);
 
-
   const onSubscribe = async () => {
     try {
       setLoading(true);
