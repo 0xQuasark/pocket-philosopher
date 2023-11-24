@@ -1,5 +1,8 @@
 # Pocket Philosopher
 
+This was built out line by line using [this video](https://www.youtube.com/watch?v=PjYWpd7xkaM)
+Altered version [can be found here](https://github.com/0xQuasark/ChatCraft)
+
 
 
 ## Tech stack
